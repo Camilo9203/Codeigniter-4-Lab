@@ -20,6 +20,7 @@ $routes->setDefaultNamespace('App\Controllers');
 $routes->setDefaultController('Home');
 $routes->setDefaultController('Students');
 $routes->setDefaultController('Courses');
+$routes->setDefaultController('Inscriptions');
 $routes->setDefaultMethod('index');
 $routes->setTranslateURIDashes(false);
 $routes->set404Override();
@@ -46,10 +47,15 @@ $routes->get('/logout', 'Home::logout');
 $routes->resource('/students', ['controller' => 'Students']);
 
 //Rutas crud cursos
-$routes->get('/getName/(:any)', 'Courses::getname/$1');
-$routes->get('/delete/(:any)', 'Courses:/$1');
-$routes->post('/create', 'Courses::create');
-$routes->post('/update', 'Courses::update');
+$routes->get('/courses', 'Courses::index');
+$routes->get('/course/(:any)', 'Courses::show/$1');
+$routes->get('/delete-course/(:any)', 'Courses::/$1');
+$routes->post('/create-course', 'Courses::create');
+
+//Rutas inscription 
+$routes->get('/inscription', 'Inscriptions::index');
+$routes->post('/create-inscription', 'Inscriptions::create');
+$routes->get('/delete-inscription/(:any)', 'Inscription:/$1');
 
 
 

@@ -2,7 +2,7 @@
 
 namespace App\Controllers;
 
-use App\Models\CoursesModel;
+use App\Models\InscriptionsModel;
 
 use App\Models\Users;
 
@@ -18,14 +18,14 @@ class Home extends BaseController
 	public function welcome()
 	{
 		//Instanciar Modelo
-		$Courses = new CoursesModel();
-		//Llamar funcion del modelo cursos
-		$datos = $Courses->getCourses();
+		$Inscriptions = new InscriptionsModel();
+		//Llamar funcion del modelo inscriciones
+		$datos = $Inscriptions->getInscriptions();
 		//Declarar array con datos de los modelos
 		$data = [
 			"datos" => $datos
 		];
-		//Retornar vista de usuario registrado + datos de cursos
+		//Retornar vista de usuario registrado + datos de inscriciones
 		return view('welcome', $data);
 		// return json_encode($data);
 	}

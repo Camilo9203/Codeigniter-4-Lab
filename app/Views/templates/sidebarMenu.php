@@ -2,7 +2,7 @@
     <div class="position-sticky pt-3">
         <ul class="nav flex-column">
             <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">
+                <a class="nav-link active" aria-current="page" href="<?php echo base_url('/welcome') ?>">
                     <span data-feather="home"></span>
                     Dashboard
                 </a>
@@ -11,6 +11,12 @@
                 <a class="nav-link" href="<?php echo base_url('/students') ?>">
                     <span data-feather="users"></span>
                     Estudiantes
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="<?php echo base_url('/courses') ?>">
+                    <span data-feather="book"></span>
+                    Cursos
                 </a>
             </li>
 
@@ -25,7 +31,7 @@
         <ul class="nav flex-column mb-2">
             <li class="nav-item">
                 <a class="nav-link" href="<?php echo base_url('/logout') ?>">
-                    <span data-feather="file-text"></span>
+                    <span data-feather="x"></span>
                     Salir
                 </a>
             </li>

@@ -19,7 +19,7 @@ class Courses extends Migration
 				'type'       => 'VARCHAR',
 				'constraint' => '100',
 			],
-			'desctription'       => [
+			'description'       => [
 				'type'       => 'VARCHAR',
 				'constraint' => '100',
 			]

@@ -6,40 +6,52 @@ use App\Models\CoursesModel;
 
 class Courses extends BaseController
 {
+    //funcion 
     public function index()
     {
-        $Crud = new CoursesModel();
-        $datos = $Crud->getCourses();
+        //Instanciar Modelo
+        $Courses = new CoursesModel();
+        //Llamar funcion del modelo cursos
+        $datos = $Courses->getCourses();
+        //Mensaje de sesión
+        $message = ('message');
+        //Declarar array con datos de los modelos
         $data = [
-            "datos" => $datos
+            "datos" => $datos,
+            "message" => $message,
         ];
-        return json_encode($data);
+        //Retornar vista de cursos
+        return view('courses', $data);
     }
+    //Funcion creación de cursos
     public function create()
     {
+        //Creación de arreglo para datos de curso
         $datos = [
             "name" => $_POST['name'],
-            "desctription" => $_POST['description'],
+            "description" => $_POST['description'],
         ];
-        $Crud = new CoursesModel();
-        $request = $Crud->createCourse($datos);
-
+        //Instanciar modelo de los cursos
+        $Courses = new CoursesModel();
+        //Crear registro en tabla cursos y guardar respuesta
+        $request = $Courses->createCourse($datos);
+        //Retornar vista según la respuesta del modelo
         if ($request > 0) {
-            return redirect()->to(base_url() . '/welcomewelcome')->with('mensaje', 'Curso creado con exito');
+            return redirect()->to(base_url() . '/courses')->with('message', '1');
         } else {
-            return redirect()->to(base_url() . '/welcomewelcome')->with('mensaje', 'Error al crear los datos');
+            return redirect()->to(base_url() . '/courses')->with('message', '0');
         }
     }
-
-    public function getcourse($idCourse)
+    //Funcion vista actalizar
+    public function show($idCourse)
     {
-        $data = ["id_course" => $idCourse];
-        $Crud = new CoursesModel();
-        $request = $Crud->getCourse($data);
+        $data = ["course_id" => $idCourse];
+        $Courses = new CoursesModel();
+        $request = $Courses->getCourse($data);
 
         $datos = ["datos" => $request];
 
-        return view('actualizar', $datos);
+        return view('update-course', $datos);
     }
 
     public function update()
@@ -50,28 +62,28 @@ class Courses extends BaseController
         ];
         $idCourse = $_POST['idCourse'];
 
-        $Crud = new CoursesModel();
+        $Courses = new CoursesModel();
 
-        $request = $Crud->updateCourse($datos, $idCourse);
+        $request = $Courses->updateCourse($datos, $idCourse);
 
         if ($request) {
-            return redirect()->to(base_url() . '/welcome')->with('mensaje', '2');
+            return redirect()->to(base_url() . '/courses')->with('message', '2');
         } else {
-            return redirect()->to(base_url() . '/welcome')->with('mensaje', '3');
+            return redirect()->to(base_url() . '/courses')->with('message', '3');
         }
     }
-
+    //F
     public function delete($idCourse)
     {
-        $Crud = new CoursesModel();
+        $Courses = new CoursesModel();
         $data = ["id_course" => $idCourse];
 
-        $request = $Crud->deleteCourse($data);
+        $request = $Courses->deleteCourse($data);
 
         if ($request) {
-            return redirect()->to(base_url() . '/welcome')->with('mensaje', '4');
+            return redirect()->to(base_url() . '/courses')->with('message', '4');
         } else {
-            return redirect()->to(base_url() . '/welcome')->with('mensaje', '5');
+            return redirect()->to(base_url() . '/courses')->with('message', '5');
         }
     }
 }

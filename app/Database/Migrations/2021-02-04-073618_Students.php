@@ -6,6 +6,7 @@ use CodeIgniter\Database\Migration;
 
 class Students extends Migration
 {
+	//Funcion de creación de tabla estudiantes
 	public function up()
 	{
 		$this->forge->addField([
@@ -27,15 +28,9 @@ class Students extends Migration
 				'type'       => 'VARCHAR',
 				'constraint' => '100',
 			],
-			'id_course' => [
-				'type' => 'INT',
-				'constraint' => 5,
-				'unsigned' => TRUE,
-				'null' => TRUE
-			]
+
 		]);
 		$this->forge->addKey('student_id', true);
-		$this->forge->addForeignKey('id_course', 'courses', 'course_id', 'CASCADE', 'SET NULL');
 		$this->forge->createTable('students');
 	}
 

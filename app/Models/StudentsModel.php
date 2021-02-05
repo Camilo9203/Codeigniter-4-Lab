@@ -4,37 +4,53 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class CrudModel extends Model
+class StudentsModel extends Model
 {
-
+    //Funcion Traer todos los registos de la tabla estudiantes 
     public function getStudents()
     {
         $Students = $this->db->query("SELECT * FROM students");
         return $Students->getResult();
     }
-
-    public function addStudent($data)
+    //Funcion Crear registro en la tabla estudiantes 
+    public function createStudent($datos)
     {
-        return $this->db->insert('users', $data);
+        //Instanciar tabla
+        $Students = $this->db->table('students');
+        //Insertar datos en la tabla
+        $Students->insert($datos);
+        //Retornar ID de 
+        return $this->db->insertID();
     }
-    public function updateUser($id, $field)
+    //Funcion traer datos de unico registro 
+    public function getStudent($data)
     {
-        $this->db->where('id', $id);
-        $this->db->update('users', $field);
-        if ($this->db->affected_rows() > 0) {
-            return true;
-        } else {
-            return false;
-        }
+        //Instanciar tabla
+        $Students =  $this->db->table('students');
+        //Comparar tabla con id enviado
+        $Students->where($data);
+        //Retornar array con resultados de la comparación
+        return $Students->get()->getResultArray();
     }
-    public function deleteUser($id)
+    //Funcion actualizar registro
+    public function updateStudent($data, $idStudent)
     {
-        $this->db->where('id', $id);
-        $this->db->delete('users');
-        if ($this->db->affected_rows() > 0) {
-            return true;
-        } else {
-            return false;
-        }
+        //Instanciar tabla
+        $Students = $this->db->table('students');
+        //Actualiar datos según ID enviado
+        $Students->set($data);
+        $Students->where('student_id', $idStudent);
+        //Actualizar registro
+        return $Students->update();
+    }
+    //Funcion borrar registro
+    public function deleteStudent($data)
+    {
+        //Instanciar tabla
+        $Students = $this->db->table('students');
+        //Comparar registro 
+        $Students->where($data);
+        //Eliminar Resgistro
+        return $Students->delete();
     }
 }

@@ -2,35 +2,90 @@
 
 namespace App\Controllers;
 
-use App\Models\;
+use App\Models\StudentsModel;
 
-class Courses extends BaseController
+class Students extends BaseController
 {
+    //funcion 
     public function index()
     {
-        $Crud = new CrudModel();
-        $data = $Crud->getStudents();
-
-        $data =  $this->getStudents();
-        if ($query) {
-            $result['users']  = $this->user->getStudents();
+        //Instanciar Modelo
+        $Students = new StudentsModel();
+        //Llamar funcion del modelo estudiantes
+        $datos = $Students->getStudents();
+        //Mensaje de sesión
+        $message = ('message');
+        //Declarar array con datos de los modelos
+        $data = [
+            "datos" => $datos,
+            "message" => $message,
+        ];
+        //Retornar vista de estudiantes
+        return view('students', $data);
+    }
+    //Funcion creación de estudiantes
+    public function create()
+    {
+        //Creación de arreglo para datos de curso
+        $datos = [
+            "name" => $_POST['name'],
+            "email" => $_POST['email'],
+            "phone" => $_POST['phone'],
+        ];
+        //Instanciar modelo de los estudiantes
+        $Students = new StudentsModel();
+        //Crear registro en tabla estudiantes y guardar respuesta
+        $request = $Students->createStudent($datos);
+        //Retornar vista según la respuesta del modelo
+        if ($request > 0) {
+            return redirect()->to(base_url() . '/students')->with('message', '1');
+        } else {
+            return redirect()->to(base_url() . '/students')->with('message', '0');
         }
-        echo json_encode($result);
-        return json_encode($data);
     }
-
-    public function new()
+    //Funcion vista actalizar
+    public function show($idStudent)
     {
-    }
+        $data = ["students_id" => $idStudent];
+        $Students = new StudentsModel();
+        $request = $Students->getStudent($data);
 
-    public function show()
-    {
+        $datos = ["datos" => $request];
+
+        return view('update-students', $datos);
     }
 
     public function update()
     {
+        $datos = [
+            "name" => $_POST['name'],
+            "email" => $_POST['email'],
+            "phone" => $_POST['phone'],
+        ];
+        $idStudent = $_POST['idStudent'];
+
+        $Students = new StudentsModel();
+
+        $request = $Students->updateStudent($datos, $idStudent);
+
+        if ($request) {
+            return redirect()->to(base_url() . '/students')->with('message', '2');
+        } else {
+            return redirect()->to(base_url() . '/students')->with('message', '3');
+        }
     }
-    public function delete()
+
+    public function delete($idStudent)
     {
+        $Students = new StudentsModel();
+        $data = ["id_course" => $idStudent];
+
+        $request = $Students->deleteStudent($data);
+
+        if ($request) {
+            return redirect()->to(base_url() . '/students')->with('message', '4');
+        } else {
+            return redirect()->to(base_url() . '/students')->with('message', '5');
+        }
     }
 }
