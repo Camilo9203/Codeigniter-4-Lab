@@ -18,7 +18,8 @@ if (file_exists(SYSTEMPATH . 'Config/Routes.php')) {
  */
 $routes->setDefaultNamespace('App\Controllers');
 $routes->setDefaultController('Home');
-$routes->setDefaultController('Crud');
+$routes->setDefaultController('Students');
+$routes->setDefaultController('Courses');
 $routes->setDefaultMethod('index');
 $routes->setTranslateURIDashes(false);
 $routes->set404Override();
@@ -32,14 +33,23 @@ $routes->setAutoRoute(true);
 
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
+
+//Rutas de inicio
 $routes->get('/', 'Home::index');
 $routes->get('/welcome', 'Home::welcome');
+
+//Rutas de login   
 $routes->post('/login', 'Home::login');
 $routes->get('/logout', 'Home::logout');
-$routes->resource('/students', ['controller' => 'Crud']);
 
+//Rutas crud estudiantes 
+$routes->resource('/students', ['controller' => 'Students']);
 
-
+//Rutas crud cursos
+$routes->get('/getName/(:any)', 'Courses::getname/$1');
+$routes->get('/delete/(:any)', 'Courses:/$1');
+$routes->post('/create', 'Courses::create');
+$routes->post('/update', 'Courses::update');
 
 
 
