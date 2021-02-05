@@ -34,13 +34,18 @@ class Students extends BaseController
         ];
         //Instanciar modelo de los estudiantes
         $Students = new StudentsModel();
-        //Crear registro en tabla estudiantes y guardar respuesta
-        $request = $Students->createStudent($datos);
-        //Retornar vista según la respuesta del modelo
-        if ($request > 0) {
-            return redirect()->to(base_url() . '/students')->with('message', '1');
-        } else {
-            return redirect()->to(base_url() . '/students')->with('message', '0');
+
+        //Validación de datos
+        if ($this->validate('courses')) {
+
+            //Crear registro en tabla estudiantes y guardar respuesta
+            $request = $Students->createStudent($datos);
+            //Retornar vista según la respuesta del modelo
+            if ($request > 0) {
+                return redirect()->to(base_url() . '/students')->with('message', '1');
+            } else {
+                return redirect()->to(base_url() . '/students')->with('message', '0');
+            }
         }
     }
     //Funcion vista actalizar

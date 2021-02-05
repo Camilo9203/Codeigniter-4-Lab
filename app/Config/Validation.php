@@ -36,10 +36,16 @@ class Validation
 		'list'   => 'CodeIgniter\Validation\Views\list',
 		'single' => 'CodeIgniter\Validation\Views\single',
 	];
-	public $curses = [
-		'name'   => 'required|minlgth[4]|max_length[10]',
-		'description' => 'required|minlgth[4]|max_length[10]',
+	public $courses = [
+		'name'   => 'required|min_length[4]|max_length[10]',
+		'description' => 'required|min_length[4]|max_length[10]',
 	];
+	public $students = [
+		'name'   => 'required|min_length[4]|max_length[10]',
+		'email' => 'required|min_length[4]|max_length[10]',
+		'phone' => 'required|min_length[4]|max_length[10]|numeric',
+	];
+
 
 	//--------------------------------------------------------------------
 	// Rules

@@ -3,6 +3,8 @@
 namespace App\Controllers;
 
 use App\Models\InscriptionsModel;
+use App\Models\StudentsModel;
+use App\Models\CoursesModel;
 
 use App\Models\Users;
 

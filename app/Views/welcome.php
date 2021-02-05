@@ -66,17 +66,17 @@
                 <div class="mb-3">
                   <select name="id_student" class="form-select" aria-label="Default select example">
                     <option selected>Estudiante</option>
-                    <option value="1">One</option>
-                    <option value="2">Two</option>
-                    <option value="3">Three</option>
+                    <?php foreach ($datos as $row) { ?>
+                      <option value="<?= $row->id_course; ?>"><?= $row->id_course; ?></option>
+                    <?php } ?>
                   </select>
+
                 </div>
                 <div class="mb-3">
                   <select name="id_course" class="form-select" aria-label="Default select example">
-                    <option selected>Curso</option>
-                    <option value="1">One</option>
-                    <option value="2">Two</option>
-                    <option value="3">Three</option>
+                    <?php foreach ($datos as $row) { ?>
+                      <option value="<?= $row->id_student; ?>"><?= $row->id_student; ?></option>
+                    <?php } ?>
                   </select>
                 </div>
               </div>
