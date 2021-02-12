@@ -9,7 +9,8 @@ class InscriptionsModel extends Model
 	//Funcion Traer todos los registos de la tabla inscriptions 
 	public function getInscriptions()
 	{
-		$Inscriptions = $this->db->query("SELECT * FROM inscriptions");
+		$Inscriptions = $this->db->query("SELECT * FROM inscriptions JOIN courses as co ON co.course_id = inscriptions.id_course JOIN students as st ON st.student_id = inscriptions.id_student");
+
 		return $Inscriptions->getResult();
 	}
 	//Funcion Crear registro en la tabla inscriptions 

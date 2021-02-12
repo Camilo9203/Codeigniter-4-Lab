@@ -21,11 +21,18 @@ class Home extends BaseController
 	{
 		//Instanciar Modelo
 		$Inscriptions = new InscriptionsModel();
+		$Students = new StudentsModel();
+		$Courses = new CoursesModel();
 		//Llamar funcion del modelo inscriciones
-		$datos = $Inscriptions->getInscriptions();
+		$dataIncriptions = $Inscriptions->getInscriptions();
+		$dataStudents = $Students->getStudents();
+		$dataCourses = $Courses->getCourses();
 		//Declarar array con datos de los modelos
 		$data = [
-			"datos" => $datos
+			"dataIncriptions" => $dataIncriptions,
+			"dataStudents" => $dataStudents,
+			"dataCourses" => $dataCourses,
+
 		];
 		//Retornar vista de usuario registrado + datos de inscriciones
 		return view('welcome', $data);

@@ -48,8 +48,8 @@
                                     <td><?php echo $key->name ?></td>
                                     <td><?php echo $key->description ?></td>
                                     <td>0</td>
-                                    <th><a id="" class="btn btn-primary btn-sm" href="<?php echo base_url() . '/course/' . $key->course_id ?>" role="button">Editar</a></th>
-                                    <th><a id="" class="btn btn-danger btn-sm" href="<?php echo base_url() . '/delete-course/' . $key->course_id ?>" role="button">Eliminar</a></th>
+                                    <th><a id="" class="btn btn-primary btn-sm" href="<?php echo base_url() . '/obtenerNombre/' . $key->course_id ?>" role="button">Editar</a></th>
+                                    <th><a id="" class="btn btn-danger btn-sm" href="<?php echo base_url() . '/eliminar/' . $key->course_id ?>" role="button">Eliminar</a></th>
                                 </tr>
                             <?php endforeach; ?>
                         </tbody>

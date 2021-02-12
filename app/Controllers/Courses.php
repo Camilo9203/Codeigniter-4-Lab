@@ -43,28 +43,29 @@ class Courses extends BaseController
         }
     }
     //Funcion vista actalizar
-    public function show($idCourse)
+    public function obtenerNombre($idCourse)
     {
         $data = ["course_id" => $idCourse];
         $Courses = new CoursesModel();
-        $request = $Courses->getCourse($data);
-
+        $request = $Courses->obtenerNombre($data);
         $datos = ["datos" => $request];
 
         return view('update-course', $datos);
     }
-
-    public function update()
+    //Funcion actualizar registro
+    public function actualizar()
     {
+        //Crear datos 
         $datos = [
             "name" => $_POST['name'],
-            "desctription" => $_POST['desctription'],
+            "description" => $_POST['description'],
         ];
+        //Capturar id course
         $idCourse = $_POST['idCourse'];
-
+        //Instanciar modelo de cursos
         $Courses = new CoursesModel();
-
-        $request = $Courses->updateCourse($datos, $idCourse);
+        //Respuesta de actu
+        $request = $Courses->actualizar($datos, $idCourse);
 
         if ($request) {
             return redirect()->to(base_url() . '/courses')->with('message', '2');
@@ -72,13 +73,13 @@ class Courses extends BaseController
             return redirect()->to(base_url() . '/courses')->with('message', '3');
         }
     }
-    //F
-    public function delete($idCourse)
+    //Funcion eliminar registro
+    public function eliminar($idCourse)
     {
         $Courses = new CoursesModel();
-        $data = ["id_course" => $idCourse];
+        //$data = ["id_course" => $idCourse];
 
-        $request = $Courses->deleteCourse($data);
+        $request = $Courses->deleteCourse($idCourse);
 
         if ($request) {
             return redirect()->to(base_url() . '/courses')->with('message', '4');

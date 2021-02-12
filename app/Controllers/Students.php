@@ -36,20 +36,17 @@ class Students extends BaseController
         $Students = new StudentsModel();
 
         //Validación de datos
-        if ($this->validate('courses')) {
-
-            //Crear registro en tabla estudiantes y guardar respuesta
-            $request = $Students->createStudent($datos);
-            //Retornar vista según la respuesta del modelo
-            if ($request > 0) {
-                return redirect()->to(base_url() . '/students')->with('message', '1');
-            } else {
-                return redirect()->to(base_url() . '/students')->with('message', '0');
-            }
+        //Crear registro en tabla estudiantes y guardar respuesta
+        $request = $Students->createStudent($datos);
+        //Retornar vista según la respuesta del modelo
+        if ($request > 0) {
+            return redirect()->to(base_url() . '/students')->with('message', '1');
+        } else {
+            return redirect()->to(base_url() . '/students')->with('message', '0');
         }
     }
     //Funcion vista actalizar
-    public function show($idStudent)
+    public function getStudent($idStudent)
     {
         $data = ["students_id" => $idStudent];
         $Students = new StudentsModel();
@@ -57,10 +54,10 @@ class Students extends BaseController
 
         $datos = ["datos" => $request];
 
-        return view('update-students', $datos);
+        return view('update-student', $datos);
     }
 
-    public function update()
+    public function actualizar()
     {
         $datos = [
             "name" => $_POST['name'],
@@ -80,10 +77,10 @@ class Students extends BaseController
         }
     }
 
-    public function delete($idStudent)
+    public function eliminar($idStudent)
     {
         $Students = new StudentsModel();
-        $data = ["id_course" => $idStudent];
+        $data = ["id_stident" => $idStudent];
 
         $request = $Students->deleteStudent($data);
 

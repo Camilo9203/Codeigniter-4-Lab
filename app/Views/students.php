@@ -47,8 +47,8 @@
                   <td><?php echo $key->name ?></td>
                   <td><?php echo $key->email ?></td>
                   <td><?php echo $key->phone ?></td>
-                  <th><a name="" id="" class="btn btn-primary btn-sm" href="<?php echo base_url() . '/students/' . $key->student_id ?>" role="button">Editar</a></th>
-                  <th><a name="" id="" class="btn btn-danger btn-sm" href="<?php echo base_url() . '/students/' . $key->student_id ?>" role="button">Eliminar</a></th>
+                  <th><a name="" id="" class="btn btn-primary btn-sm" href="<?php echo base_url() . '/get-student/' . $key->student_id ?>" role="button">Editar</a></th>
+                  <th><a name="" id="" class="btn btn-danger btn-sm" href="<?php echo base_url() . '/delte-students/' . $key->student_id ?>" role="button">Eliminar</a></th>
                 </tr>
               <?php endforeach; ?>
             </tbody>
@@ -61,7 +61,7 @@
 
     <div class="modal" id="coursesModal" tabindex="-1" aria-labelledby="coursesModalLabel" aria-hidden="true">
       <div class="modal-dialog">
-        <form action="<?php echo base_url('/students') ?>" method="post">
+        <form action="<?php echo base_url('/create-student') ?>" method="post">
           <div class="modal-content">
             <div class="modal-header">
               <h5 class="modal-title">Crear Estudiante</h5>
@@ -76,11 +76,11 @@
                 </div>
                 <!-- email -->
                 <div class="mb-3">
-                  <input type="text" class="form-control md-3" id="email" name="email" placeholder="Correo Electrónico" required>
+                  <input type="email" class="form-control md-3" id="email" name="email" placeholder="Correo Electrónico" required>
                 </div>
                 <!-- phone -->
                 <div class="mb-3">
-                  <input type="text" class="form-control md-3" id="phone" name="phone" placeholder="Teléfono" required>
+                  <input type="number" class="form-control md-3" id="phone" name="phone" placeholder="Teléfono" required>
                 </div>
               </div>
             </div>

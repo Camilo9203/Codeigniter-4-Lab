@@ -28,12 +28,12 @@ class StudentsModel extends Model
         //Instanciar tabla
         $Students =  $this->db->table('students');
         //Comparar tabla con id enviado
-        $Students->where($data);
+        $Students->where('student_id', $data);
         //Retornar array con resultados de la comparación
         return $Students->get()->getResultArray();
     }
     //Funcion actualizar registro
-    public function updateStudent($data, $idStudent)
+    public function actualizar($data, $idStudent)
     {
         //Instanciar tabla
         $Students = $this->db->table('students');

@@ -10,7 +10,12 @@ class Inscriptions extends Migration
 	public function up()
 	{
 		$this->forge->addField([
-
+			'id'          => [
+				'type'           => 'INT',
+				'constraint'     => 5,
+				'unsigned'       => true,
+				'auto_increment' => true,
+			],
 			'id_course' => [
 				'type' => 'INT',
 				'constraint' => 5,
@@ -25,6 +30,7 @@ class Inscriptions extends Migration
 			],
 
 		]);
+		$this->forge->addKey('id', true);
 		$this->forge->addForeignKey('id_student', 'students', 'student_id', 'CASCADE', 'SET NULL');
 		$this->forge->addForeignKey('id_course', 'courses', 'course_id', 'CASCADE', 'SET NULL');
 		$this->forge->createTable('inscriptions');

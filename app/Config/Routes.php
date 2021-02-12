@@ -44,13 +44,20 @@ $routes->post('/login', 'Home::login');
 $routes->get('/logout', 'Home::logout');
 
 //Rutas crud estudiantes 
-$routes->resource('/students', ['controller' => 'Students']);
+// $routes->resource('/students', ['controller' => 'Students']);
+$routes->get('/students', 'Students::index');
+$routes->get('/get-student/(:any)', 'Students::getstudent/$1');
+$routes->post('/update-student', 'Students::actualizar');
+$routes->get('/delete-student/(:any)', 'Students::eliminar/$1');
+$routes->post('/create-student', 'Students::create');
+
 
 //Rutas crud cursos
 $routes->get('/courses', 'Courses::index');
-$routes->get('/course/(:any)', 'Courses::show/$1');
-$routes->get('/delete-course/(:any)', 'Courses::/$1');
+$routes->get('/eliminar/(:any)', 'Courses::eliminar/$1');
 $routes->post('/create-course', 'Courses::create');
+$routes->get('/obtenerNombre/(:any)', 'Courses::obtenerNombre/$1');
+$routes->post('/actualizar', 'Courses::actualizar');
 
 //Rutas inscription 
 $routes->get('/inscription', 'Inscriptions::index');

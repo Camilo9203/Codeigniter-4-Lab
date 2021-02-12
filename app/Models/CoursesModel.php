@@ -23,7 +23,7 @@ class CoursesModel extends Model
         return $this->db->insertID();
     }
     //Funcion traer datos de unico registro 
-    public function getCourse($data)
+    public function obtenerNombre($data)
     {
         //Instanciar tabla
         $Courses =  $this->db->table('courses');
@@ -33,13 +33,13 @@ class CoursesModel extends Model
         return $Courses->get()->getResultArray();
     }
     //Funcion actualizar registro
-    public function updateCourse($data, $idCourse)
+    public function actualizar($data, $idCourse)
     {
         //Instanciar tabla
         $Courses = $this->db->table('courses');
         //Actualiar datos según ID enviado
         $Courses->set($data);
-        $Courses->where('id_nombre', $idCourse);
+        $Courses->where('course_id', $idCourse);
         //Actualizar registro
         return $Courses->update();
     }
@@ -49,7 +49,7 @@ class CoursesModel extends Model
         //Instanciar tabla
         $Courses = $this->db->table('courses');
         //Comparar registro 
-        $Courses->where($data);
+        $Courses->where('course_id', $data);
         //Eliminar Resgistro
         return $Courses->delete();
     }

@@ -38,9 +38,9 @@
               </tr>
             </thead>
             <tbody>
-              <?php foreach ($datos as $key) : ?>
+              <?php foreach ($dataIncriptions as $key) : ?>
                 <tr>
-                  <td><?php echo $key->id_student ?></td>
+                  <td><?php echo $key->email ?></td>
                   <td><?php echo $key->id_course ?></td>
                   <th><a name="" id="" class="btn btn-danger btn-sm" href="<?php echo base_url() ?>" role="button">Eliminar</a></th>
                 </tr>
@@ -65,17 +65,18 @@
               <div class="form-group">
                 <div class="mb-3">
                   <select name="id_student" class="form-select" aria-label="Default select example">
-                    <option selected>Estudiante</option>
-                    <?php foreach ($datos as $row) { ?>
-                      <option value="<?= $row->id_course; ?>"><?= $row->id_course; ?></option>
+                    <option selected>Seleccionar Estudiante</option>
+                    <?php foreach ($dataStudents as $row) { ?>
+                      <option value="<?= $row->student_id; ?>"><?= $row->name; ?></option>
                     <?php } ?>
                   </select>
 
                 </div>
                 <div class="mb-3">
                   <select name="id_course" class="form-select" aria-label="Default select example">
-                    <?php foreach ($datos as $row) { ?>
-                      <option value="<?= $row->id_student; ?>"><?= $row->id_student; ?></option>
+                    <option selected>Seleccionar Curso</option>
+                    <?php foreach ($dataCourses as $row) { ?>
+                      <option value="<?= $row->course_id; ?>"><?= $row->name; ?></option>
                     <?php } ?>
                   </select>
                 </div>
